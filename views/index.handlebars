@@ -1,1 +1,29 @@
-<h1>This is a TEST!</h1>
+<div class="container col-8 mt-3">
+  <div class="mb-3">
+    <select class="form-control" name="categorySelector" id="categorySelector">
+      <option value="">查看類別開銷</option>
+    </select>
+  </div>
+  <div class="form-group row justify-content-center">
+    <label class="col-sm-2 col-form-label" for="totalAmount">總金額</label>
+    <input class="col-sm-8 form-control" type="number" name="totalAmount" id="totalAmount" value="00000" disabled>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item d-inline-flex align-items-center">
+      <div class="record flex-grow-1 d-flex align-items-center">
+        <i class="fas fa-utensils mr-3" style="font-size: 36px;"></i>
+        <div class="recordInfo flex-grow-1">
+          <h5 class="recordName">item 1</h5>
+          <p class="mb-0">2021/xx/xx</p>
+        </div>
+        <h2 class="mr-3">100</h2>
+      </div>
+
+      <a href="">修改</a>
+      <button>刪除</button>
+    </li>
+  </ul>
+  <div class="createButton text-center my-3">
+  <button class="btn btn-info">新增支出</button>
+  </div>
+</div>
