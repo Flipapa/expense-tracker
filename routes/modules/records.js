@@ -7,15 +7,19 @@ const categoryList = []
 Category.find()
   .sort({ _id: 'asc' })
   .lean()
-  .then(categories => 
+  .then(categories =>
     categories.forEach(category => categoryList.push(category.name))
   )
-router.get('/', (req, res) => {
-  Record.find()
-    .lean()
-    .sort({date: 'desc'})
-    .then(records => res.render('index', { records, categoryList }))
-    .catch(error => console.error(error))
+
+router.get('/new', (req, res) => {
+  return res.render('new', { categoryList })
+})
+
+router.post('/', (req, res) => {
+  const { name, date, category, amount, shop} = req.body
+  return Record.create({ name, date, category, amount, shop})
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 module.exports = router
