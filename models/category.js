@@ -5,6 +5,10 @@ const categorySchema = new Schema({
     type: String,
     require: true,
     trim: true
+  },
+  icon: {
+    type: String,
+    trim: true
   }
 })
 

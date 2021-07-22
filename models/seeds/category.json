@@ -1,11 +1,36 @@
 {
   "results": [
-    {"name": "食物"},
-    {"name": "交通"},
-    {"name": "家居"},
-    {"name": "購物"},
-    {"name": "娛樂"},
-    {"name": "醫療"},
-    {"name": "投資"}
+    {
+      "name": "食物",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "name": "交通",
+      "icon": "fas fa-shuttle-van"
+    },
+    {
+      "name": "家居",
+      "icon": "fas fa-home"
+    },
+    {
+      "name": "購物",
+      "icon": "fas fa-shopping-cart"
+    },
+    {
+      "name": "娛樂",
+      "icon": "fas fa-gamepad"
+    },
+    {
+      "name": "醫療",
+      "icon": "fas fa-hospital"
+    },
+    {
+      "name": "投資",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "name": "其他",
+      "icon": "fas fa-pen"
+    }
   ]
 }
