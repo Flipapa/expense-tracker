@@ -8,7 +8,7 @@ Category.find()
   .sort({ _id: 'asc' })
   .lean()
   .then(categories =>
-    categories.forEach(category => categoryList.push(category.name))
+    categories.forEach(category => categoryList.push(category))
   )
 
 router.get('/new', (req, res) => {
@@ -17,6 +17,7 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const { name, date, category, amount, shop} = req.body
+  console.log(req.body)
   return Record.create({ name, date, category, amount, shop})
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

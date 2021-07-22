@@ -1,35 +1,40 @@
-<div class="container col-8 mt-3">
+<div class="container col-12 col-sm-10 col-md-8 col-lg-6 mt-3 pb-5">
   <div class="row justify-content-center mb-3">
-    <select class="form-control col-10" name="categorySelector" id="categorySelector">
+    <select class="form-control col-10 col-sm-11" name="categorySelector" id="categorySelector">
       <option value="">查看類別開銷</option>
       {{#each categoryList}}
-      <option value="{{this}}">{{this}}</option>
+      <option value="{{this.name}}">{{this.name}}</option>
       {{/each}}
     </select>
   </div>
   <div class="form-group row justify-content-center">
-    <label class="col-sm-2 col-form-label" for="totalAmount">總金額</label>
-    <input class="col-sm-8 form-control" type="number" name="totalAmount" id="totalAmount" value="00000" disabled>
+    <label class="col-2 col-form-label" for="totalAmount">總金額</label>
+    <input class="col-9 form-control" type="number" name="totalAmount" id="totalAmount" value="00000" disabled>
   </div>
   <ul class="list-group">
     {{#each records}}
-    <li class="list-group-item d-inline-flex align-items-center">
-      <div class="record flex-grow-1 d-flex align-items-center">
-        <i class="fas fa-utensils mr-3" style="font-size: 36px;"></i>
-        <div class="recordInfo flex-grow-1">
-          <h5 class="recordName">{{this.name}}</h5>
-          <span class="mb-0">{{this.date}}</span>
-          <span class="mb-0">{{this.category}}</span>
-        </div>
-        <h2 class="mr-3">{{this.amount}}</h2>
+    <li class="list-group-item d-flex justify-content-center align-items-center">
+      <div class="col-2 text-center" style="font-size: 36px;">
+        {{#each ../categoryList}}
+          {{#ifEqual this.name ../this.category}}{{{this.icon}}}{{/ifEqual}}
+        {{/each}}
       </div>
-
-      <a href="">修改</a>
-      <button>刪除</button>
+      <div class="col-4">
+        <h5 class="recordName">{{this.name}}</h5>
+        <span class="badge badge-dark mb-0">{{this.date}}</span>
+        <span class="badge badge-warning mb-0">{{this.category}}</span>
+      </div>
+      <div class="col-3">
+        <h2 class="mr-3 text-right">{{this.amount}}</h2>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-secondary" href="">修改</a>
+        <button class="btn btn-danger">刪除</button>
+      </div>
     </li>
     {{/each}}
   </ul>
-  <div class="createButton row justify-content-center my-3">
+  <div class="createButton row justify-content-center mt-3 mb-4">
   <a href="/records/new" class="btn btn-info col-6">新增支出</a>
   </div>
 </div>
