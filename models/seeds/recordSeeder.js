@@ -4,7 +4,7 @@ const db = require('../../config/mongoose')
 
 db.once('open', () => {
   console.log('recordSeeder start!')
-  Record.create(recordList.results)
+  Record.create(recordList)
     .then(() => {
       db.close()
       console.log('done!')

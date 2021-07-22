@@ -4,7 +4,7 @@ const db = require('../../config/mongoose')
 
 db.once('open', () => {
   console.log('categorySeeder start!')
-  Category.create(categoryList.results)
+  Category.create(categoryList)
     .then(() => {
       db.close()
       console.log('done!')
