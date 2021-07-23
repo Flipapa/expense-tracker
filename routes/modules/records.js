@@ -17,8 +17,31 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const { name, date, category, amount, shop} = req.body
-  console.log(req.body)
   return Record.create({ name, date, category, amount, shop})
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+router.get('/:record_id/edit', (req, res) => {
+  const id = req.params.record_id
+  return Record.findById(id)
+    .lean()
+    .then(record => res.render('edit', { record, categoryList }))
+    .catch(error => console.log(error))
+})
+
+router.put('/:record_id', (req, res) => {
+  const id = req.params.record_id
+  const { name, date, category, amount, shop } = req.body
+  return Record.findById(id)
+    .then(record => {
+      record.name = name
+      record.date = date
+      record.category = category
+      record.amount = amount
+      record.shop = shop
+      return record.save()
+    })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
