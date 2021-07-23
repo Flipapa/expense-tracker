@@ -11,6 +11,15 @@ Category.find()
     categories.forEach(category => categoryList.push(category))
   )
 
+router.get('/filter', (req, res) => {
+  const { categorySelector } = req.query
+  Record.find({ category: categorySelector })
+    .lean()
+    .sort({ _id: 'desc'})
+    .then(records => res.render('index', { records, categoryList, categorySelector }))
+    .catch(error => console.log(error))
+})
+
 router.get('/new', (req, res) => {
   return res.render('new', { categoryList })
 })

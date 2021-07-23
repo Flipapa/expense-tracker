@@ -1,21 +1,21 @@
 <div class="container col-12 col-sm-10 col-md-8 col-lg-6 mt-3 pb-5">
-  <div class="row justify-content-center mb-3">
-    <select class="form-control col-10 col-sm-11" name="categorySelector" id="categorySelector">
-      <option value="">查看類別開銷</option>
+  <form action="/records/filter" class="row justify-content-center mb-3">
+    <select class="form-control" name="categorySelector" id="categorySelector" onchange="submit()">
+      <option selected disabled value="">查看類別開銷</option>
       {{#each categoryList}}
-      <option value="{{this.name}}">{{this.name}}</option>
+      <option value="{{this.name}}" {{#ifEqual this.name ../categorySelector}}selected{{/ifEqual}}>{{this.name}}</option>
       {{/each}}
     </select>
-  </div>
+  </form>
   {{!-- total amount --}}
-  <div class="form-group row justify-content-center">
+  <div class="form-group row justify-content-between">
     <label class="col-2 col-form-label" for="totalAmount">總金額</label>
-    <input class="col-9 form-control" type="number" name="totalAmount" id="totalAmount" value="00000" disabled>
+    <input class="col-10 form-control" type="number" name="totalAmount" id="totalAmount" value="00000" disabled>
   </div>
   {{!-- record list --}}
   <ul class="list-group">
     {{#each records}}
-    <li class="list-group-item d-flex justify-content-center align-items-center">
+    <li class="list-group-item d-flex justify-content-around align-items-center">
       <div class="col-2 text-center" style="font-size: 36px;">
         {{#each ../categoryList}}
         {{#ifEqual this.name ../this.category}}{{{this.icon}}}{{/ifEqual}}
@@ -36,6 +36,20 @@
       </div>
     </li>
     {{/each}}
+    {{#unless categoryList}}
+      {{#unless records}}
+        <li class="list-group-item text-center">
+          <h5>請新增一筆紀錄，開始你的記帳生活</h5>
+        </li>
+      {{/unless}}
+    {{/unless}}
+    {{#if categoryList}}
+      {{#unless records}}
+        <li class="list-group-item text-center">
+          <h5>查無紀錄</h5>
+        </li>
+      {{/unless}}
+    {{/if}}
   </ul>
   {{!-- create button --}}
   <div class="createButton row justify-content-center mt-3 mb-4">
