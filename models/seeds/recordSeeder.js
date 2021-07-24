@@ -2,11 +2,9 @@ const Record = require('../record')
 const recordList = require('./record.json')
 const db = require('../../config/mongoose')
 
-db.once('open', () => {
+db.once('open', async () => {
   console.log('recordSeeder start!')
-  Record.create(recordList)
-    .then(() => {
-      db.close()
-      console.log('done!')
-    })
+  await Record.create(recordList)
+  console.log('done!')
+  db.close()
 })
