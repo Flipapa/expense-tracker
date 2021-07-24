@@ -2,9 +2,11 @@ const Category = require('../category')
 const categoryList = require('./category.json')
 const db = require('../../config/mongoose')
 
-db.once('open', async () => {
+db.once('open', () => {
   console.log('categorySeeder start!')
-  await Category.create(categoryList)
-  console.log('done!')
-  db.close()
+  Category.create(categoryList)
+    .then(() => {
+      db.close()
+      console.log('done!')
+    })
 })
