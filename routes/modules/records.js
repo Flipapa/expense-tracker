@@ -16,7 +16,13 @@ router.get('/filter', (req, res) => {
   Record.find({ category: categorySelector })
     .lean()
     .sort({ _id: 'desc'})
-    .then(records => res.render('index', { records, categoryList, categorySelector }))
+    .then(records => {
+      let totalAmount = 0
+      for (let record of records) {
+        totalAmount += record.amount
+      }
+      res.render('index', { totalAmount, records, categoryList, categorySelector })
+    })
     .catch(error => console.log(error))
 })
 

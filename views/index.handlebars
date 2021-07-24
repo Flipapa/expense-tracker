@@ -1,4 +1,4 @@
-<div class="container col-12 col-sm-10 col-md-8 col-lg-6 mt-3 pb-5">
+<div class="container col-11 col-sm-10 col-md-8 col-lg-6 mt-3 pb-5">
   <form action="/records/filter" class="row justify-content-center mb-3">
     <select class="form-control" name="categorySelector" id="categorySelector" onchange="submit()">
       <option selected disabled value="">查看類別開銷</option>
@@ -8,26 +8,26 @@
     </select>
   </form>
   {{!-- total amount --}}
-  <div class="form-group row justify-content-between">
-    <label class="col-2 col-form-label" for="totalAmount">總金額</label>
-    <input class="col-10 form-control" type="number" name="totalAmount" id="totalAmount" value="00000" disabled>
+  <div class="row justify-content-between">
+    <h5 class="col-auto">總金額</h5>
+    <h2 class="col-auto text-right text-info" style="font-size: 60px;" id="totalAmount">{{totalAmount}}</h2>
   </div>
   {{!-- record list --}}
   <ul class="list-group">
     {{#each records}}
     <li class="list-group-item d-flex justify-content-around align-items-center">
-      <div class="col-2 text-center" style="font-size: 36px;">
+      <div class="col-2 text-center" style="font-size: 2rem;">
         {{#each ../categoryList}}
         {{#ifEqual this.name ../this.category}}{{{this.icon}}}{{/ifEqual}}
         {{/each}}
       </div>
       <div class="col-4">
-        <h5 class="recordName">{{this.name}}</h5>
+        <h5 class="recordName" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{this.name}}</h5>
         <span class="badge badge-dark mb-0">{{this.date}}</span>
         <span class="badge badge-warning mb-0">{{this.category}}</span>
       </div>
       <div class="col-3">
-        <h2 class="mr-3 text-right">{{this.amount}}</h2>
+        <h3 class="mr-3 text-right">{{this.amount}}</h3>
       </div>
       <div class="col-auto">
         <a class="btn btn-secondary" href="/records/{{this._id}}/edit">修改</a>
